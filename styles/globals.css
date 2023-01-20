@@ -1,4 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 /* Box sizing rules */
 *,
@@ -24,7 +27,7 @@ select {
 }
 
 :root {
-  --black: #1c1e21;
+  --black: #0d0e0ffa;
   --white: #ffffff;
   --tw-color1: #a855f7;
   --tw-color1-hover: #9333ea;

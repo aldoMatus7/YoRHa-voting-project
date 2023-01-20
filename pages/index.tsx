@@ -16,11 +16,12 @@ import styles from "../styles/Home.module.css";
 import { parseIneligibility } from "../utils/parseIneligibility";
 
 const Home = () => {
-  const tokenAddress = "0x03728725240b021887355c943d040BF933F3d5F0";
+  const tokenAddress = "0x453f351966B81EDe5B8f44e133093b24ED32ac26";
   const { contract } = useContract(tokenAddress, "token-drop");
   const address = useAddress();
   const [quantity, setQuantity] = useState(1);
   const { data: contractMetadata } = useContractMetadata(contract);
+  const [amountToClaim, setAmountToClaim] = useState("");
 
   const claimConditions = useClaimConditions(contract);
   const activeClaimCondition = useActiveClaimConditionForWallet(
@@ -222,7 +223,7 @@ const Home = () => {
         <p>Loading...</p>
       ) : (
         <>
-          {contractMetadata?.image && (
+          {/*{contractMetadata?.image && (
             <Image
               src={contractMetadata?.image}
               alt={contractMetadata?.name!}
@@ -230,11 +231,12 @@ const Home = () => {
               height={200}
               style={{ objectFit: "contain" }}
             />
-          )}
+          )} */}
 
-          <h2 className={styles.title}>Claim Tokens</h2>
+          <img src="/YoRHa_29.webp" className="rounded-2xl"/>
+          <h2 className={styles.title}>YORHA Mint</h2>
           <p className={styles.explain}>
-            Claim ERC20 tokens from{" "}
+            Mint your unit YRH voting token!{" "}
             <span className={styles.pink}>{contractMetadata?.name}</span>
           </p>
         </>
@@ -245,30 +247,20 @@ const Home = () => {
       <div className={styles.claimGrid}>
         <input
           type="number"
-          placeholder="Enter amount to claim"
-          onChange={(e) => {
-            const value = parseInt(e.target.value);
-            console.log(maxClaimable);
-            if (value > maxClaimable) {
-              setQuantity(maxClaimable);
-            } else if (value < 1) {
-              setQuantity(1);
-            } else {
-              setQuantity(value);
-            }
-          }}
-          value={quantity}
+          placeholder="Enter number of tokens"
+          onChange={(e) => setAmountToClaim(e.target.value)}
           className={`${styles.textInput} ${styles.noGapBottom}`}
         />
         <Web3Button
           accentColor="#5204BF"
           colorMode="dark"
-          contractAddress={tokenAddress}
-          action={(contract) => contract.erc20.claim(quantity)}
-          onSuccess={() => alert("Claimed!")}
+          contractAddress={"0x453f351966B81EDe5B8f44e133093b24ED32ac26"}
+          action={(contract) => contract.call("mintTo", address, amountToClaim)}
+          onSuccess={() => alert("Success!")}
           onError={(err) => alert(err)}
         >
           {buttonText}
+          Mint Tokens
         </Web3Button>
       </div>
     </div>
