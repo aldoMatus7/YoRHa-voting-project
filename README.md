@@ -1,5 +1,8 @@
 # Token Drop Example
 
+#Glory to Mankind!
+![YoRHa](https://user-images.githubusercontent.com/106222284/213724566-1ca3997b-a669-4752-b3ba-b0bbc13b7412.png)
+
 ## Introduction
 
 In this guide, we will utilize the [**Token Drop**](https://portal.thirdweb.com/contracts/token-drop) contract to release ERC-20 tokens!
